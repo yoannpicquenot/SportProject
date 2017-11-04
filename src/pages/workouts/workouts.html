@@ -10,5 +10,15 @@
 <ion-content padding>
     <h1>Hello</h1>
 
+    <ion-list>
+        <ion-item>
+            <ion-card *ngFor="let workout of workouts">
+              <ion-card-content>
+                {{ workout.title }}
+              </ion-card-content>
+            </ion-card>
+        </ion-item>
+    </ion-list>
+
     <button class="floating-button" (click)="addWorkout()"><ion-icon name="add"></ion-icon></button>
 </ion-content>

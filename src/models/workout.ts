@@ -1,7 +1,9 @@
 export class Workout {
     private name: string;
     private exercices: [{id: number, name: string}];
-    constructor() {}
+    constructor(name: string) {
+        this.name = name;
+    }
 
     public setName(name: string): void {
         this.name = name;
