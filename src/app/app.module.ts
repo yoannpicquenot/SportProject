@@ -15,6 +15,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MagicBallProvider } from '../providers/magic-ball/magic-ball';
 import { WorkoutsProvider } from '../providers/workouts/workouts';
+// import { FirebaseProvider } from '../providers/firebase/firebase';
+
+import { HttpModule } from '@angular/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { FirebaseProvider } from './../providers/firebase/firebase';
+
+const firebaseConfig = {
+  apiKey: "K2zD4qTpiGznxHfEVdvKhu9s",
+  authDomain: "sportproject-56408.firebaseio.com",
+  databaseURL: "https://sportproject-56408.firebaseio.com",
+  projectId: "sportproject-56408",
+  storageBucket: "sportproject-56408.firebaseio.com",
+};
 
 @NgModule({
   declarations: [
@@ -27,6 +41,9 @@ import { WorkoutsProvider } from '../providers/workouts/workouts';
     WorkoutsModal
   ],
   imports: [
+    HttpModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     BrowserModule,
     IonicModule.forRoot(MyApp, {}, { links: [] })
   ],
@@ -47,7 +64,8 @@ import { WorkoutsProvider } from '../providers/workouts/workouts';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MagicBallProvider,
     NativeStorage,
-    WorkoutsProvider
+    WorkoutsProvider,
+    FirebaseProvider
   ]
 })
 export class AppModule { }

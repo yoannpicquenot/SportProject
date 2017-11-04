@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Workout } from '../../models/workout';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
     templateUrl: 'workouts-modal.html'
@@ -25,10 +26,10 @@ export class WorkoutsModal {
     templateUrl: 'workouts.html',
 })
 export class WorkoutsPage {
-
-    public workouts: [any];
+    public workouts: FirebaseListObservable<Workout>;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+       this.workouts = this.firebaseProvider.getWorkouts();
     }
 
     ionViewDidLoad() {
@@ -42,4 +43,11 @@ export class WorkoutsPage {
         modal.present();
     }
 
+    public addWorkoutToBase(workout) {
+      this.firebaseProvider.addWorkout(this.newItem);
+    }
+
+    public removeWorkout(id) {
+      this.firebaseProvider.removeWorkout(id);
+    }
 }
