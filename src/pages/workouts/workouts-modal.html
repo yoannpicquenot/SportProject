@@ -11,8 +11,14 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
   <ion-list>
-    
+    <ion-item>
+      <ion-label fixed>Title</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="myInput"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button full block (click)="createWorkout()">Create</button>
+    </ion-item>
   </ion-list>
 </ion-content>
